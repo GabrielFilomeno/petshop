@@ -8,12 +8,19 @@ import java.util.List;
 
 @Repository
 public class PetRepository {
+    private TutorRepository tutorRepository;
 
         private static List<Pet> pets = new ArrayList<>();
         private static int ultimoId;
 
+        public PetRepository(TutorRepository tutorRepository) {
+            this.tutorRepository = tutorRepository;
+        }
+
         public void addPet(Pet pet) {
             pet.setIdPet(++ultimoId);
+            var tutor = tutorRepository.buscar(pet.getIdTutor());
+            pet.setTutor(tutor);
             pets.add(pet);
         }
 
@@ -28,4 +35,5 @@ public class PetRepository {
         public void removerPet(Pet pet) {
             pets.remove(pet);
         }
+
 }

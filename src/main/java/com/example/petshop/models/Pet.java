@@ -9,6 +9,8 @@ public class Pet {
     private double altura;
     private String dataNascimento;
     private String especie;
+    private int idTutor;
+    private Tutor tutor;
 
     public int getIdPet() {
         return idPet;
@@ -64,5 +66,21 @@ public class Pet {
 
     public void setEspecie(String especie) {
         this.especie = especie;
+    }
+
+    public int getIdTutor() {
+        return idTutor;
+    }
+
+    public void setIdTutor(int idTutor) {
+        this.idTutor = idTutor;
+    }
+
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
     }
 }
