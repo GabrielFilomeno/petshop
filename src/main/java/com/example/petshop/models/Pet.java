@@ -2,12 +2,21 @@ package com.example.petshop.models;
 
 public class Pet {
 
+    private int idPet;
     private String nomePet;
     private String raca;
     private double peso;
     private double altura;
     private String dataNascimento;
     private String especie;
+
+    public int getIdPet() {
+        return idPet;
+    }
+
+    public void setIdPet(int idPet) {
+        this.idPet = idPet;
+    }
 
     public String getNomePet() {
         return nomePet;

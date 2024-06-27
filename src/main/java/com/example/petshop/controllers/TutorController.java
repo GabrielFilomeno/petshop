@@ -1,28 +1,43 @@
 package com.example.petshop.controllers;
 
+import com.example.petshop.models.Tutor;
+import com.example.petshop.services.TutorServices;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/tutor")
 public class TutorController {
 
+    private TutorServices tutorServices;
+
+    public TutorController(TutorServices tutorServices) {
+        this.tutorServices = tutorServices;
+    }
+
     @PostMapping
-    public String cadastrarTutor(){
-        return "Cadastrado";
+    public void cadastrarTutor(@RequestBody Tutor tutor){
+        tutorServices.cadastrarTutor(tutor);
     }
 
     @GetMapping
-    public String listarTutores(){
-        return "Lista de tutores vazia";
+    public List<Tutor> listarTutores(){
+        return tutorServices.listarTutores();
+    }
+
+    @GetMapping("/{idTutor}")
+    public Tutor buscar(@PathVariable int idTutor){
+        return tutorServices.buscar(idTutor);
     }
 
     @PutMapping
-    public String atualizarTutor(){
-        return "Atualizado";
+    public void atualizarTutor(@RequestBody Tutor tutor){
+        tutorServices.atualizarTutor(tutor);
     }
 
-    @DeleteMapping
-    public String deletarTutor(){
-        return "Deletado";
+    @DeleteMapping("/{idTutor}")
+    public String deletarTutor(@PathVariable int idTutor){
+        return tutorServices.removerTutor(idTutor) ? "Excluido" : String.format("Tutor não encontrado com o id: %d", idTutor);
     }
 }
